@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useListStore } from "../store";
-import { Spinner } from "../assets/Spinner";
 import { Card, DeletedCard } from "./Cards";
 import { useGetListData } from "../api/getListData";
 import { ButtonSecondary, ToggleRevealButton } from "./Buttons";
+import { Spinner } from "../assets/icons";
 
 export const Entrypoint = () => {
   const [isRevealed, setIsRevealed] = useState(false);
@@ -17,27 +17,27 @@ export const Entrypoint = () => {
     saveToLocalStorage,
     getFromLocalStorage,
     refresh,
-  } = useListStore(); // initialize store
+  } = useListStore();
 
   useEffect(() => {
     getFromLocalStorage();
-  }, []); // get from local storage on mount
+  }, []);
 
   useEffect(() => {
     saveToLocalStorage();
-  }, [visibleCards, deletedCards, expandedCards]); // save to local storage when these change
+  }, [visibleCards, deletedCards, expandedCards]);
 
   useEffect(() => {
     if (!listQuery.isLoading && listQuery.data && visibleCards.length === 0) {
       refresh(listQuery.data?.filter((item) => item.isVisible) ?? []);
     }
-  }, [listQuery.data, listQuery.isLoading, visibleCards.length]); // if visibleCards.length is 0, refresh
+  }, [listQuery.data, listQuery.isLoading, visibleCards.length]);
 
   const handleRefresh = () => {
     listQuery.refetch();
     if (!listQuery.data) return;
     refresh(listQuery.data.filter((item) => item.isVisible) ?? []);
-  }; // refresh list
+  };
 
   if (listQuery.isLoading) {
     return <Spinner />;

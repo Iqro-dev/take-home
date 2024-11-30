@@ -13,11 +13,6 @@ export type CardProps = Readonly<{
   isExpanded: boolean;
 }>;
 
-export type DeletedCardProps = Readonly<{
-  id: ListItem["id"];
-  title: ListItem["title"];
-}>;
-
 export const Card: FC<CardProps> = ({
   id,
   title,
@@ -53,6 +48,11 @@ export const Card: FC<CardProps> = ({
     </div>
   );
 };
+
+export type DeletedCardProps = Readonly<{
+  id: ListItem["id"];
+  title: ListItem["title"];
+}>;
 
 export const DeletedCard: FC<DeletedCardProps> = ({ id, title }) => {
   const { handleRevert } = useListStore();

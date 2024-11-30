@@ -2,10 +2,6 @@ import { ComponentProps, FC } from "react";
 
 type ButtonProps = Readonly<ComponentProps<"button">>;
 
-export type ToggleRevealButtonProps = Readonly<
-  ButtonProps & { isRevealed: boolean }
->;
-
 export const Button: FC<ButtonProps> = ({ children, ...props }) => {
   return (
     <button
@@ -28,16 +24,20 @@ export const ButtonSecondary: FC<ButtonProps> = ({ children, ...props }) => {
   );
 };
 
+export type ToggleRevealButtonProps = Readonly<
+  ButtonProps & { isRevealed: boolean }
+>;
+
 export const ToggleRevealButton: FC<ToggleRevealButtonProps> = ({
   isRevealed,
   ...props
 }) => {
   return (
-    <button
+    <ButtonSecondary
       className="text-white text-sm transition-colors hover:bg-gray-800 bg-black rounded px-3 py-1"
       {...props}
     >
       {isRevealed ? "Hide" : "Reveal"}
-    </button>
+    </ButtonSecondary>
   );
 };
