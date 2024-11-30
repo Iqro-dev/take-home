@@ -1,6 +1,11 @@
 import { FC } from "react";
 import { Button } from "./Buttons";
-import { ChevronDownIcon, ChevronUpIcon, XMarkIcon } from "../assets/icons";
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  RevertIcon,
+  XMarkIcon,
+} from "../assets/icons";
 import { useListStore } from "../store";
 
 import { ListItem } from "../api/getListData";
@@ -62,7 +67,9 @@ export const DeletedCard: FC<DeletedCardProps> = ({ id, title }) => {
       <div className="flex justify-between mb-0.5">
         <h1 className="font-medium">{title}</h1>
 
-        <Button onClick={() => handleRevert(id)}>Revert</Button>
+        <Button onClick={() => handleRevert(id)}>
+          <RevertIcon />
+        </Button>
       </div>
     </div>
   );
