@@ -1,8 +1,22 @@
 import { FC } from "react";
-import { DeleteButton, ExpandButton, RevertButton } from "./Buttons";
-import { ChevronDownIcon, ChevronUpIcon } from "./icons";
-import { CardProps, DeletedCardProps } from "../types/cards";
+import { Button } from "./Buttons";
+import { ChevronDownIcon, ChevronUpIcon, XMarkIcon } from "../assets/icons";
 import { useListStore } from "../store";
+
+import { ListItem } from "../api/getListData";
+
+export type CardProps = Readonly<{
+  id: ListItem["id"];
+  title: ListItem["title"];
+  description: ListItem["description"];
+  handleExpand: () => void;
+  isExpanded: boolean;
+}>;
+
+export type DeletedCardProps = Readonly<{
+  id: ListItem["id"];
+  title: ListItem["title"];
+}>;
 
 export const Card: FC<CardProps> = ({
   id,
@@ -19,11 +33,13 @@ export const Card: FC<CardProps> = ({
         <h1 className="font-medium">{title}</h1>
 
         <div className="flex">
-          <ExpandButton onClick={handleExpand}>
+          <Button onClick={handleExpand}>
             {isExpanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
-          </ExpandButton>
+          </Button>
 
-          <DeleteButton onClick={() => handleDelete(id)} />
+          <Button onClick={() => handleDelete(id)}>
+            <XMarkIcon />
+          </Button>
         </div>
       </div>
 
@@ -46,7 +62,7 @@ export const DeletedCard: FC<DeletedCardProps> = ({ id, title }) => {
       <div className="flex justify-between mb-0.5">
         <h1 className="font-medium">{title}</h1>
 
-        <RevertButton onClick={() => handleRevert(id)} />
+        <Button onClick={() => handleRevert(id)}>Revert</Button>
       </div>
     </div>
   );

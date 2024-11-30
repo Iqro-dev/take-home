@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import mockJson from "../constants/mock.json";
+import { getRandom, shuffle, sleep } from "../utils";
 
 export type ListItem = {
   id: number;
@@ -28,21 +29,4 @@ export const useGetListData = () => {
   });
 
   return query;
-};
-
-const getRandom = () => Math.floor(Math.random() * 100);
-
-const sleep = (ms: number) => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const shuffle = <T extends any[]>(array: T): T => {
-  for (let i = array.length - 1; i >= 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-  return array;
 };

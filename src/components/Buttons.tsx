@@ -1,13 +1,12 @@
-import { XMarkIcon } from "./icons";
-import {
-  DeleteButtonProps,
-  ExpandButtonProps,
-  RefreshButtonProps,
-  RevertButtonProps,
-  ToggleRevealButtonProps,
-} from "../types/buttons";
+import { ComponentProps, FC } from "react";
 
-export const ExpandButton: ExpandButtonProps = ({ children, ...props }) => {
+type ButtonProps = Readonly<ComponentProps<"button">>;
+
+export type ToggleRevealButtonProps = Readonly<
+  ButtonProps & { isRevealed: boolean }
+>;
+
+export const Button: FC<ButtonProps> = ({ children, ...props }) => {
   return (
     <button
       className="hover:text-gray-700 transition-colors flex items-center justify-center"
@@ -18,40 +17,18 @@ export const ExpandButton: ExpandButtonProps = ({ children, ...props }) => {
   );
 };
 
-export const DeleteButton: DeleteButtonProps = (props) => {
-  return (
-    <button
-      className="hover:text-gray-700 transition-colors flex items-center justify-center"
-      {...props}
-    >
-      <XMarkIcon />
-    </button>
-  );
-};
-
-export const RevertButton: RevertButtonProps = (props) => {
-  return (
-    <button
-      className="hover:text-gray-700 transition-colors flex items-center justify-center"
-      {...props}
-    >
-      Revert
-    </button>
-  );
-};
-
-export const RefreshButton: RefreshButtonProps = (props) => {
+export const ButtonSecondary: FC<ButtonProps> = ({ children, ...props }) => {
   return (
     <button
       className="text-white text-sm transition-colors hover:bg-gray-800 bg-black rounded px-3 py-1"
       {...props}
     >
-      Refresh
+      {children}
     </button>
   );
 };
 
-export const ToggleRevealButton: ToggleRevealButtonProps = ({
+export const ToggleRevealButton: FC<ToggleRevealButtonProps> = ({
   isRevealed,
   ...props
 }) => {

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useListStore } from "../store";
-import { Spinner } from "./Spinner";
+import { Spinner } from "../assets/Spinner";
 import { Card, DeletedCard } from "./Cards";
 import { useGetListData } from "../api/getListData";
-import { RefreshButton, ToggleRevealButton } from "./Buttons";
+import { ButtonSecondary, ToggleRevealButton } from "./Buttons";
 
 export const Entrypoint = () => {
   const [isRevealed, setIsRevealed] = useState(false);
@@ -77,7 +77,7 @@ export const Entrypoint = () => {
                 Reveal
               </ToggleRevealButton>
 
-              <RefreshButton onClick={handleRefresh}>Refresh</RefreshButton>
+              <ButtonSecondary onClick={handleRefresh}>Refresh</ButtonSecondary>
             </div>
           </div>
 
