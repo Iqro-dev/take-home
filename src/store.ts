@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { ListItem } from "./api/getListData";
 
-type Store = {
+type Store = Readonly<{
   visibleCards: ListItem[];
   deletedCards: ListItem[];
   expandedCards: ListItem["id"][];
@@ -12,7 +12,7 @@ type Store = {
   saveToLocalStorage: () => void;
   getFromLocalStorage: () => void;
   refresh: (visibleCards: ListItem[]) => void;
-};
+}>;
 
 export const useListStore = create<Store>((set) => ({
   visibleCards: [],
