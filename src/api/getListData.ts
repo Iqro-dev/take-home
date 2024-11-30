@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import mockJson from "./mock.json";
+import mockJson from "../constants/mock.json";
 
 export type ListItem = {
   id: number;
