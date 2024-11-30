@@ -3,7 +3,7 @@ import { useListStore } from "../store";
 import { Spinner } from "./Spinner";
 import { Card, DeletedCard } from "./Cards";
 import { useGetListData } from "../api/getListData";
-import { ToggleRevealButton } from "./Buttons";
+import { RefreshButton, ToggleRevealButton } from "./Buttons";
 
 export const Entrypoint = () => {
   const [isRevealed, setIsRevealed] = useState(false);
@@ -77,12 +77,7 @@ export const Entrypoint = () => {
                 Reveal
               </ToggleRevealButton>
 
-              <button
-                className="text-white text-sm transition-colors hover:bg-gray-800 disabled:bg-black/75 bg-black rounded px-3 py-1"
-                onClick={handleRefresh}
-              >
-                Refresh
-              </button>
+              <RefreshButton onClick={handleRefresh}>Refresh</RefreshButton>
             </div>
           </div>
 

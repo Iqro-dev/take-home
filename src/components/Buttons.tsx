@@ -2,6 +2,7 @@ import { XMarkIcon } from "./icons";
 import {
   DeleteButtonProps,
   ExpandButtonProps,
+  RefreshButtonProps,
   RevertButtonProps,
   ToggleRevealButtonProps,
 } from "../types/buttons";
@@ -35,6 +36,17 @@ export const RevertButton: RevertButtonProps = (props) => {
       {...props}
     >
       Revert
+    </button>
+  );
+};
+
+export const RefreshButton: RefreshButtonProps = (props) => {
+  return (
+    <button
+      className="text-white text-sm transition-colors hover:bg-gray-800 bg-black rounded px-3 py-1"
+      {...props}
+    >
+      Refresh
     </button>
   );
 };
